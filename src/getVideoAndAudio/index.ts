@@ -1,6 +1,6 @@
 import fs from "fs";
 import { getVideoAndAudioUrl } from "./getVideoAndAudioUrl";
-import { handleTmpFilePath } from "./handleTmpFilePath";
+import { handleRawFilePath } from "./handleRawFilePath";
 import { requestVideoAndAudio } from "./requestVideoAndAudio";
 import Listr from "listr";
 
@@ -26,9 +26,9 @@ export async function getVideoAndAudio({
       },
     },
     {
-      title: "Creating tmp folder",
+      title: "Creating raw folder",
       task: async (ctx) => {
-        const { videoFilePath, audioFilePath } = await handleTmpFilePath();
+        const { videoFilePath, audioFilePath } = await handleRawFilePath();
 
         ctx.getVideoAndAudio.videoFilePath = videoFilePath;
         ctx.getVideoAndAudio.audioFilePath = audioFilePath;

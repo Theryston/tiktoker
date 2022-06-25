@@ -21,11 +21,7 @@ async function main({ netflixLink }: { netflixLink: string }) {
     {
       title: "Configuring global context",
       task: async (ctx) => {
-        ctx.outputFilePath = path.join(
-          process.cwd(),
-          "movie-file",
-          "output.mp4"
-        );
+        ctx.outputFilePath = path.join(process.cwd(), "video", "output.mp4");
       },
     },
     {
@@ -60,7 +56,7 @@ async function main({ netflixLink }: { netflixLink: string }) {
       );
       console.log("More infos:");
       console.log(
-        "In the same folder where the video is, there is the tmp folder, inside it you can check the audio and video files that have been downloaded, you can delete the tmp folder if it is not useful."
+        "In the same folder where the video is, there is the raw folder, inside it you can check the audio and video files that have been downloaded, you can delete the raw folder if it is not useful."
       );
     })
     .catch((err) => {
