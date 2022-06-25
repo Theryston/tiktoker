@@ -1,5 +1,5 @@
 import fs from "fs";
-import { getVideoAndAudioUrl } from "./getVideoAndAudioUrl";
+import { getVideoAndAudioInfoFromUrl } from "./getVideoAndAudioInfoFromUrl";
 import { handleRawFilePath } from "./handleRawFilePath";
 import { requestVideoAndAudio } from "./requestVideoAndAudio";
 import Listr from "listr";
@@ -19,10 +19,13 @@ export async function getVideoAndAudio({
     {
       title: "Getting video and audio url from netflix",
       task: async (ctx) => {
-        const { videoUrl, audioUrl } = await getVideoAndAudioUrl(netflixLink);
+        const { videoUrl, audioUrl, title, subtitle } =
+          await getVideoAndAudioInfoFromUrl(netflixLink);
 
         ctx.getVideoAndAudio.videoUrl = videoUrl;
         ctx.getVideoAndAudio.audioUrl = audioUrl;
+        ctx.title = title;
+        ctx.subtitle = subtitle;
       },
     },
     {

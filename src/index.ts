@@ -34,15 +34,22 @@ async function main({ netflixLink }: { netflixLink: string }) {
 
   const tasks = new Listr([
     {
-      title: "Configuring global context",
-      task: async (ctx) => {
-        ctx.outputFilePath = path.join(process.cwd(), "video", "result.mp4");
-      },
-    },
-    {
       title: "Getting video and audio",
       task: async () => {
         return await getVideoAndAudio({ netflixLink });
+      },
+    },
+    {
+      title: "Handling output file name",
+      task: async (ctx) => {
+        ctx.outputFilePath = path.join(
+          process.cwd(),
+          "video",
+          `${ctx.title.replace(/[^a-zA-Z 0-9]/gi, "")} - ${ctx.subtitle.replace(
+            /[^a-zA-Z 0-9]/gi,
+            ""
+          )}.mp4`
+        );
       },
     },
     {

@@ -1,6 +1,6 @@
 import puppeteer from "puppeteer";
 
-export async function getVideoAndAudioUrl(netflixLink: string) {
+export async function getVideoAndAudioInfoFromUrl(netflixLink: string) {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   page.setUserAgent(
@@ -20,7 +20,16 @@ export async function getVideoAndAudioUrl(netflixLink: string) {
     (stream: any) => stream.crop_w === videoMaxCroppedWidth
   ).urls[0].url;
 
+  await page.waitForSelector(".modal-header-title");
+  const title = await page.evaluate(
+    () => (document.querySelector(".modal-header-title") as any).innerText
+  );
+  await page.waitForSelector(".modal-header-subtitle");
+  const subtitle = await page.evaluate(
+    () => (document.querySelector(".modal-header-subtitle") as any).innerText
+  );
+
   await browser.close();
 
-  return { videoUrl, audioUrl };
+  return { videoUrl, audioUrl, title, subtitle };
 }
