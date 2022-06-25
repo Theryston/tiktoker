@@ -5,8 +5,6 @@ import { getVideoAndAudio } from "./getVideoAndAudio";
 import { editTheVideo } from "./editTheVideo";
 import { delay } from "./utils/delay";
 
-import "dotenv/config";
-
 const rl = createInterface({
   input: process.stdin,
   output: process.stdout,

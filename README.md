@@ -12,4 +12,4 @@ npm install -g create-movie-videos-for-tiktok
 
 To open the cli is very simple, just type in your terminal in the directory where you want the video `cmvft` see an example below of the usage:
 
-![image](./docs//use.png)
+![image](https://ik.imagekit.io/Theryston/use_xkW0-YhJs.png?ik-sdk-version=javascript-1.4.3&updatedAt=1656180401064)
