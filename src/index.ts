@@ -4,6 +4,7 @@ import { createInterface } from "readline";
 import { getVideoAndAudio } from "./getVideoAndAudio";
 import { editTheVideo } from "./editTheVideo";
 import { delay } from "./utils/delay";
+import fs from "fs";
 
 const rl = createInterface({
   input: process.stdin,
@@ -11,17 +12,31 @@ const rl = createInterface({
 });
 
 // example: https://www.netflix.com/br/clips/81604008?s=a&trkid=13747225&t=cp&vlang=pt
-rl.question("Enter the quick laughs link on Netflix: ", async (answer) => {
-  await main({ netflixLink: answer });
-  rl.close();
-});
+rl.question(
+  "Enter the quick laughs link on Netflix (just press enter to load from info.json file): ",
+  async (answer) => {
+    if (!answer.length) {
+      const info = JSON.parse(
+        fs.readFileSync(path.join(process.cwd(), "info.json"), "utf8")
+      );
+      main(info);
+    }
+    await main({ netflixLink: answer });
+    rl.close();
+  }
+);
 
 async function main({ netflixLink }: { netflixLink: string }) {
+  if (!netflixLink) {
+    console.error("netflixLink is required");
+    return;
+  }
+
   const tasks = new Listr([
     {
       title: "Configuring global context",
       task: async (ctx) => {
-        ctx.outputFilePath = path.join(process.cwd(), "video", "output.mp4");
+        ctx.outputFilePath = path.join(process.cwd(), "video", "result.mp4");
       },
     },
     {

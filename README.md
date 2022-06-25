@@ -1,6 +1,6 @@
 # Create Movie Video For TikTok
 
-this cli will download the audio and video of a quick laugh from netflix, it will join the two, and it will generate the output.mp4 with this video so you can publish it on your tiktok, example of the videos on [tiktok fillscene](https://www.tiktok.com/@fillscene)
+this cli will download the audio and video of a quick laugh from netflix, it will join the two, and it will generate the result.mp4 with this video so you can publish it on your tiktok, example of the videos on [tiktok fillscene](https://www.tiktok.com/@fillscene)
 
 ## Installation
 
