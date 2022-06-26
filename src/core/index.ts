@@ -4,7 +4,7 @@ import { getVideoAndAudio } from "./getVideoAndAudio";
 import { editTheVideo } from "./editTheVideo";
 import { delay } from "./utils/delay";
 
-export async function CmvftCore({
+export async function TiktokerCore({
   netflixLink,
   outputBasePath,
 }: {

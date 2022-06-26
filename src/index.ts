@@ -1,7 +1,7 @@
 import path from "path";
 import { createInterface } from "readline";
 import fs from "fs";
-import { CmvftCore } from "./core";
+import { TiktokerCore } from "./core";
 
 const rl = createInterface({
   input: process.stdin,
@@ -18,12 +18,12 @@ rl.question(
       const info = JSON.parse(
         fs.readFileSync(path.join(cwd, "info.json"), "utf8")
       );
-      CmvftCore({
+      TiktokerCore({
         ...info,
         outputBasePath: cwd,
       });
     }
-    await CmvftCore({ netflixLink: answer, outputBasePath: cwd });
+    await TiktokerCore({ netflixLink: answer, outputBasePath: cwd });
     rl.close();
   }
 );
