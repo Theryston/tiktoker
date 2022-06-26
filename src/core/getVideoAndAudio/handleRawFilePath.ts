@@ -1,16 +1,20 @@
 import fs from "fs";
 import path from "path";
 
-export async function handleRawFilePath() {
-  if (fs.existsSync(path.join(process.cwd(), "video"))) {
-    fs.rmdirSync(path.join(process.cwd(), "video"), { recursive: true });
+export async function handleRawFilePath({
+  outputBasePath,
+}: {
+  outputBasePath: string;
+}) {
+  if (fs.existsSync(path.join(outputBasePath, "video"))) {
+    fs.rmdirSync(path.join(outputBasePath, "video"), { recursive: true });
   }
-  fs.mkdirSync(path.join(process.cwd(), "video"));
-  fs.mkdirSync(path.join(process.cwd(), "video", "raw"));
+  fs.mkdirSync(path.join(outputBasePath, "video"));
+  fs.mkdirSync(path.join(outputBasePath, "video", "raw"));
 
-  const videoFilePath = path.join(process.cwd(), "video", "raw", "video.mp4");
+  const videoFilePath = path.join(outputBasePath, "video", "raw", "video.mp4");
 
-  const audioFilePath = path.join(process.cwd(), "video", "raw", "audio.mp4");
+  const audioFilePath = path.join(outputBasePath, "video", "raw", "audio.mp4");
 
   return { videoFilePath, audioFilePath };
 }

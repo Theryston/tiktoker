@@ -4,10 +4,20 @@ import { getVideoAndAudio } from "./getVideoAndAudio";
 import { editTheVideo } from "./editTheVideo";
 import { delay } from "./utils/delay";
 
-export async function CmvftCore({ netflixLink }: { netflixLink: string }) {
+export async function CmvftCore({
+  netflixLink,
+  outputBasePath,
+}: {
+  netflixLink: string;
+  outputBasePath: string;
+}) {
   if (!netflixLink) {
     console.error("netflixLink is required");
     return;
+  }
+
+  if (!outputBasePath) {
+    throw new Error("outputBasePath is required");
   }
 
   const tasks = new Listr([
@@ -21,7 +31,7 @@ export async function CmvftCore({ netflixLink }: { netflixLink: string }) {
       title: "Handling output file name",
       task: async (ctx) => {
         ctx.outputFilePath = path.join(
-          process.cwd(),
+          outputBasePath,
           "video",
           `${ctx.title.replace(/[^a-zA-Z 0-9]/gi, "")} - ${ctx.subtitle.replace(
             /[^a-zA-Z 0-9]/gi,
@@ -45,7 +55,9 @@ export async function CmvftCore({ netflixLink }: { netflixLink: string }) {
   ]);
 
   tasks
-    .run()
+    .run({
+      outputBasePath,
+    })
     .then((ctx) => {
       console.log("\n");
       console.log(

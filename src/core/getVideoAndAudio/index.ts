@@ -31,7 +31,9 @@ export async function getVideoAndAudio({
     {
       title: "Creating raw folder",
       task: async (ctx) => {
-        const { videoFilePath, audioFilePath } = await handleRawFilePath();
+        const { videoFilePath, audioFilePath } = await handleRawFilePath({
+          outputBasePath: ctx.outputBasePath,
+        });
 
         ctx.getVideoAndAudio.videoFilePath = videoFilePath;
         ctx.getVideoAndAudio.audioFilePath = audioFilePath;

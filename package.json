@@ -11,7 +11,8 @@
   "scripts": {
     "start:dev": "ts-node-dev src/index.ts",
     "build": "tsc",
-    "link": "npm link"
+    "link": "npm link",
+    "example:core": "node example/core.js"
   },
   "bin": {
     "cmvft": "bin/run"
