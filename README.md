@@ -5,7 +5,7 @@ this cli will download the audio and video of a quick laugh from netflix, it wil
 ## Installation
 
 ```shell
-npm install -g create-movie-videos-for-tiktok
+npm install -g tiktoker
 ```
 
 ## Exemplo
