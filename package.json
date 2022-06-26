@@ -3,6 +3,11 @@
   "version": "1.2.0",
   "main": "dist/index.js",
   "license": "MIT",
+  "files": [
+    "dist",
+    "package.json",
+    "README.md"
+  ],
   "scripts": {
     "start:dev": "ts-node-dev src/index.ts",
     "build": "tsc",
