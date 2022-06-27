@@ -33,10 +33,9 @@ export async function TiktokerCore({
         ctx.outputFilePath = path.join(
           outputBasePath,
           "video",
-          `${ctx.title.replace(/[^a-zA-Z 0-9]/gi, "")} - ${ctx.subtitle.replace(
-            /[^a-zA-Z 0-9]/gi,
-            ""
-          )}.mp4`
+          `${ctx.title.replace(/[^a-zA-Z 0-9]/gi, "")}${
+            ctx.subtitle.length ? " - " : ""
+          }${ctx.subtitle.replace(/[^a-zA-Z 0-9]/gi, "")}.mp4`
         );
       },
     },

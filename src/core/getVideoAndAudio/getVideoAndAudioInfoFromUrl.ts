@@ -19,15 +19,15 @@ export async function getVideoAndAudioInfoFromUrl(netflixLink: string) {
   const videoUrl = body.result.video_tracks[0].streams.find(
     (stream: any) => stream.crop_w === videoMaxCroppedWidth
   ).urls[0].url;
-
-  await page.waitForSelector(".modal-header-title");
-  const title = await page.evaluate(
-    () => (document.querySelector(".modal-header-title") as any).innerText
-  );
-  await page.waitForSelector(".modal-header-subtitle");
-  const subtitle = await page.evaluate(
-    () => (document.querySelector(".modal-header-subtitle") as any).innerText
-  );
+  const title = await page.evaluate(() => {
+    const title: any = document.querySelector(".modal-header-title");
+    return title.innerText;
+  });
+  const subtitle = await page.evaluate(() => {
+    const subtitle: any = document.querySelector(".modal-header-subtitle");
+    if (subtitle) return subtitle.innerText;
+    return "";
+  });
 
   await browser.close();
 
