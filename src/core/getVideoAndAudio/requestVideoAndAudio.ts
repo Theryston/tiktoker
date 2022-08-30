@@ -10,13 +10,13 @@ export async function requestVideoAndAudio({
   const audioResponse = await Axios({
     method: "GET",
     url: audioUrl,
-    responseType: "stream",
+    responseType: "arraybuffer",
   });
 
   const videoResponse = await Axios({
     method: "GET",
     url: videoUrl,
-    responseType: "stream",
+    responseType: "arraybuffer",
   });
 
   return { audioResponse, videoResponse };

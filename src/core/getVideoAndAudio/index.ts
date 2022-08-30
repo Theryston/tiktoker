@@ -40,36 +40,24 @@ export async function getVideoAndAudio({
       },
     },
     {
-      title: "Requesting video and audio",
+      title: "Downloading video and audio",
       task: async (ctx) => {
         const { audioResponse, videoResponse } = await requestVideoAndAudio({
           audioUrl: ctx.getVideoAndAudio.audioUrl,
           videoUrl: ctx.getVideoAndAudio.videoUrl,
         });
 
-        ctx.getVideoAndAudio.audioResponse = audioResponse;
-        ctx.getVideoAndAudio.videoResponse = videoResponse;
-      },
-    },
-    {
-      title: "Saving video and audio",
-      task: async (ctx) => {
-        ctx.getVideoAndAudio.audioFile = fs.createWriteStream(
-          ctx.getVideoAndAudio.audioFilePath
+        ctx.getVideoAndAudio.audioFile = fs.writeFileSync(
+          ctx.getVideoAndAudio.audioFilePath,
+          audioResponse.data
         );
-        ctx.getVideoAndAudio.videoFile = fs.createWriteStream(
-          ctx.getVideoAndAudio.videoFilePath
+        ctx.getVideoAndAudio.videoFile = fs.writeFileSync(
+          ctx.getVideoAndAudio.videoFilePath,
+          videoResponse.data
         );
 
-        ctx.getVideoAndAudio.audioResponse.data.pipe(
-          ctx.getVideoAndAudio.audioFile
-        );
-        ctx.getVideoAndAudio.videoResponse.data.pipe(
-          ctx.getVideoAndAudio.videoFile
-        );
-
-        ctx.videoFilePath = ctx.getVideoAndAudio.videoFilePath;
         ctx.audioFilePath = ctx.getVideoAndAudio.audioFilePath;
+        ctx.videoFilePath = ctx.getVideoAndAudio.videoFilePath;
       },
     },
   ]);

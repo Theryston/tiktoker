@@ -2,7 +2,6 @@ import Listr from "listr";
 import path from "path";
 import { getVideoAndAudio } from "./getVideoAndAudio";
 import { editTheVideo } from "./editTheVideo";
-import { delay } from "./utils/delay";
 
 export async function TiktokerCore({
   netflixLink,
@@ -42,7 +41,6 @@ export async function TiktokerCore({
     {
       title: "Joining video and audio",
       task: async (ctx) => {
-        await delay(20000);
         const data = await editTheVideo({
           videoFilePath: ctx.videoFilePath,
           audioFilePath: ctx.audioFilePath,
