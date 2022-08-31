@@ -1,6 +1,8 @@
 import fs from "fs";
-import ffmpegPath from "ffmpeg-static";
-import cp from "child_process";
+import ffmpeg from "fluent-ffmpeg";
+import ffmpegInstaller from "@ffmpeg-installer/ffmpeg";
+
+ffmpeg.setFfmpegPath(ffmpegInstaller.path);
 
 export async function editTheVideo({
   videoFilePath,
@@ -11,37 +13,19 @@ export async function editTheVideo({
   audioFilePath: string;
   outputFilePath: string;
 }) {
-  const audioFile = fs.createReadStream(audioFilePath);
-  const videoFile = fs.createReadStream(videoFilePath);
-  const outputFile = fs.createWriteStream(outputFilePath);
-
-  let ffmpegProcess: any = cp.spawn(
-    ffmpegPath,
-    [
-      "-loglevel",
-      "8",
-      "-hide_banner",
-      "-i",
-      "pipe:3",
-      "-i",
-      "pipe:4",
-      "-map",
-      "0:a",
-      "-map",
-      "1:v",
-      "-c",
-      "copy",
-      "-f",
-      "matroska",
-      "pipe:5",
-    ],
-    {
-      windowsHide: true,
-      stdio: ["inherit", "inherit", "inherit", "pipe", "pipe", "pipe"],
-    }
-  );
-
-  audioFile.pipe(ffmpegProcess.stdio[3]);
-  videoFile.pipe(ffmpegProcess.stdio[4]);
-  ffmpegProcess.stdio[5].pipe(outputFile);
+  const loadPromise = new Promise((resolve, reject) => {
+    const videoFile = fs.createReadStream(videoFilePath);
+    const proc = ffmpeg()
+      .addInput(videoFile)
+      .addInput(audioFilePath)
+      .format("mp4")
+      .save(outputFilePath);
+    proc.on("end", () => {
+      resolve("done");
+    });
+    proc.on("error", (err) => {
+      reject(err);
+    });
+  });
+  return loadPromise;
 }
