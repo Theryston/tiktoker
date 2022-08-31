@@ -1,8 +1,8 @@
-import fs from "fs";
-import ffmpeg from "fluent-ffmpeg";
+import { FFScene, FFVideo, FFCreator } from "ffcreator";
+import { getVideoDurationInSeconds } from "get-video-duration";
 import ffmpegInstaller from "@ffmpeg-installer/ffmpeg";
 
-ffmpeg.setFfmpegPath(ffmpegInstaller.path);
+FFCreator.setFFmpegPath(ffmpegInstaller.path);
 
 export async function editTheVideo({
   videoFilePath,
@@ -13,18 +13,42 @@ export async function editTheVideo({
   audioFilePath: string;
   outputFilePath: string;
 }) {
-  const loadPromise = new Promise((resolve, reject) => {
-    const videoFile = fs.createReadStream(videoFilePath);
-    const proc = ffmpeg()
-      .addInput(videoFile)
-      .addInput(audioFilePath)
-      .format("mp4")
-      .save(outputFilePath);
-    proc.on("end", () => {
-      resolve("done");
+  const loadPromise = new Promise(async (resolve, reject) => {
+    const rawVideoDuration = await getVideoDurationInSeconds(videoFilePath);
+
+    const creator = new FFCreator({
+      cacheDir: "./.cache",
+      width: 720,
+      height: 1280,
     });
-    proc.on("error", (err) => {
-      reject(err);
+
+    const scene = new FFScene();
+    scene.setDuration(rawVideoDuration + 0.5);
+    scene.setBgColor("#000000");
+    scene.addAudio({
+      path: audioFilePath,
+    });
+    creator.addChild(scene);
+
+    const video = new FFVideo({
+      path: videoFilePath,
+      x: 360,
+      y: 640,
+      width: 720,
+      height: 1280,
+    });
+    video.setAudio(false);
+    scene.addChild(video);
+
+    creator.output(outputFilePath);
+    creator.start();
+
+    creator.on("error", (e) => {
+      reject(e);
+    });
+
+    creator.on("complete", (e) => {
+      resolve(e);
     });
   });
   return loadPromise;

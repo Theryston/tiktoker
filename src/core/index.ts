@@ -39,7 +39,7 @@ export async function TiktokerCore({
       },
     },
     {
-      title: "Joining video and audio",
+      title: "Editing the video",
       task: async (ctx) => {
         const data = await editTheVideo({
           videoFilePath: ctx.videoFilePath,

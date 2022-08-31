@@ -129,6 +129,7 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+
 # exemplos
 video
 info.json
