@@ -11,13 +11,13 @@ export async function getVideoAndAudio({
 }): Promise<any> {
   const tasks = new Listr([
     {
-      title: "Configuring getVideoAndAudio context",
+      title: "Configuring...",
       task: async (ctx) => {
         ctx.getVideoAndAudio = {};
       },
     },
     {
-      title: "Getting video and audio url from netflix",
+      title: "Getting video and audio download url from netflix",
       task: async (ctx) => {
         const { videoUrl, audioUrl, title, subtitle } =
           await getVideoAndAudioInfoFromUrl(netflixLink);
