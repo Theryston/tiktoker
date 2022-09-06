@@ -18,7 +18,7 @@
     "watch": "jest --watch",
     "snapupdate": "jest --updateSnapshot",
     "coverage": "jest --coverage",
-    "postinstall": "prisma migrate deploy && prisma generate"
+    "postinstall": "tiktoker config"
   },
   "files": [
     "build",
@@ -34,6 +34,7 @@
     "@ffmpeg-installer/ffmpeg": "^1.1.0",
     "@prisma/client": "^4.3.1",
     "axios": "^0.27.2",
+    "dotenv-cli": "^6.0.0",
     "ffcreator": "^6.7.5",
     "get-video-duration": "^4.1.0",
     "gluegun": "latest",
