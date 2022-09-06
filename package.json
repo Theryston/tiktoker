@@ -51,7 +51,9 @@
     "@types/node": "^12.7.11",
     "@typescript-eslint/eslint-plugin": "^4.17.0",
     "@typescript-eslint/parser": "^4.17.0",
+    "commitizen": "^4.2.5",
     "copyfiles": "^2.4.1",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^7.22.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-prettier": "^3.3.1",
@@ -93,5 +95,10 @@
   "homepage": "https://github.com/Theryston/tiktoker",
   "bugs": {
     "url": "https://github.com/Theryston/tiktoker/issues"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   }
 }
