@@ -1,26 +1,13 @@
-# tiktoker CLI
+# TikToker
 
-A CLI for tiktoker.
+![image](https://ik.imagekit.io/Theryston/tiktoker-logo_9CHh7RY2z.jpg)
 
-## Customizing your CLI
+this cli will download the audio and video of a quick laugh from netflix, it will join the two, and it will generate the "Netflix Movie/Serie Name - Clip Title.mp4" with this video so you can publish it on your tiktok, example of the videos on [tiktok fillscene](https://www.tiktok.com/@fillscene)
 
-Check out the documentation at https://github.com/infinitered/gluegun/tree/master/docs.
-
-## Publishing to NPM
-
-To package your CLI up for NPM, do this:
+## Installation
 
 ```shell
-$ npm login
-$ npm whoami
-$ npm test
-
-$ npm run build
-
-$ npm publish
+npm install -g tiktoker
 ```
 
-# License
-
-MIT - see LICENSE
-
+## Usage
