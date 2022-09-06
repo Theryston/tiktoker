@@ -28,7 +28,8 @@
     "docs",
     "bin",
     "prisma",
-    "package.json"
+    "package.json",
+    "scripts"
   ],
   "license": "MIT",
   "dependencies": {
