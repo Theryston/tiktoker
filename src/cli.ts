@@ -1,4 +1,4 @@
-import { build } from 'gluegun'
+import { build, filesystem, print } from 'gluegun'
 
 async function run(argv) {
   const cli = build()
@@ -8,6 +8,18 @@ async function run(argv) {
     .help()
     .version()
     .create()
+
+  const isConfigCommand = argv.includes('config')
+  if (!isConfigCommand) {
+    const envPath = filesystem.path(__dirname, '..', '.env')
+    if (!filesystem.exists(envPath)) {
+      print.error(
+        'TikToker is not configured, run "tiktoker config" to configure it'
+      )
+      return
+    }
+  }
+
   const toolbox = await cli.run(argv)
 
   return toolbox
