@@ -2,14 +2,7 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": false,
     "experimentalDecorators": true,
-    "lib": [
-      "es2015",
-      "scripthost",
-      "es2015.promise",
-      "es2015.generator",
-      "es2015.iterable",
-      "dom"
-    ],
+    "lib": ["es2016", "scripthost", "dom"],
     "module": "commonjs",
     "moduleResolution": "node",
     "noImplicitAny": false,
@@ -19,7 +12,7 @@
     "inlineSourceMap": true,
     "outDir": "build",
     "strict": false,
-    "target": "ES2015",
+    "target": "es2016",
     "declaration": true,
     "declarationDir": "build/types"
   },
