@@ -1,6 +1,6 @@
 import * as puppeteer from 'puppeteer'
 
-type Video = {
+export type VideoGotFromNetflixType = {
   videoUrl: string
   subtitlesUrl: string
   audioUrl: string
@@ -8,7 +8,9 @@ type Video = {
   description: string
 }
 
-export async function getVideoFromNetflix(netflixLink: string): Promise<Video> {
+export async function getVideoFromNetflix(
+  netflixLink: string
+): Promise<VideoGotFromNetflixType> {
   const browser = await puppeteer.launch()
   const page = await browser.newPage()
   page.setUserAgent(

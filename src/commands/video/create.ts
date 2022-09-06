@@ -2,7 +2,10 @@ import { GluegunCommand } from 'gluegun'
 import listProfiles from '../../core/profile/list-profiles'
 import * as path from 'path'
 import listVideos from '../../core/video/list-videos'
-import { getVideoFromNetflix } from '../../core/video/get-video-from-netflix'
+import {
+  getVideoFromNetflix,
+  VideoGotFromNetflixType,
+} from '../../core/video/get-video-from-netflix'
 import loading from 'loading-cli'
 import downloadFiles from '../../core/video/download-files'
 import editVideo from '../../core/video/edit-video'
@@ -103,7 +106,17 @@ const command: GluegunCommand = {
       }
 
       load.start(`Getting video info ${i + 1} from netflix...`)
-      const videoFromNetflix = await getVideoFromNetflix(videoInfo.netflixLink)
+      let videoFromNetflix: VideoGotFromNetflixType
+      try {
+        videoFromNetflix = await getVideoFromNetflix(videoInfo.netflixLink)
+      } catch (error) {
+        load.stop()
+        print.error(
+          `Error getting video ${i + 1} (${videoPath}) info from netflix.`
+        )
+        continue
+      }
+
       load.stop()
       filesystem.dirAsync(path.join(videoPath, 'raw'))
 
