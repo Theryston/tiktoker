@@ -37,7 +37,9 @@ const command: GluegunCommand = {
       profile = await createProfile({ path: pathToImport, name })
     }
 
-    const allEntitiesInProfile = (await filesystem.listAsync(profile.path))
+    const allEntitiesInProfile = (
+      (await filesystem.listAsync(profile.path)) as string[]
+    )
       .map((entityPath) => path.join(profile.path, entityPath))
       .filter((entityPath) => entityPath.indexOf('.cache') === -1)
 
@@ -46,7 +48,7 @@ const command: GluegunCommand = {
     )
 
     for (const folder of allFoldersInProfile) {
-      const subEntities = (await filesystem.listAsync(folder))
+      const subEntities = ((await filesystem.listAsync(folder)) as string[])
         .map((entityPath) => path.join(folder, entityPath))
         .filter((entityPath) => entityPath.indexOf('.cache') === -1)
 
@@ -76,7 +78,7 @@ const command: GluegunCommand = {
         let name: string
         if (hasVideoFolder) {
           const videosInVideoFolder = (
-            await filesystem.listAsync(path.join(folder, 'video'))
+            (await filesystem.listAsync(path.join(folder, 'video'))) as string[]
           )
             .map((entityPath) => path.join(folder, 'video', entityPath))
             .filter((entityPath) => entityPath.indexOf('.cache') === -1)

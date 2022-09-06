@@ -37,7 +37,8 @@ const command: GluegunCommand = {
     )
 
     for (const key in profile) {
-      print.info(`${key}: ${profile[key]}`)
+      const value = profile[key as keyof typeof profile]
+      print.info(`${key}: ${value}`)
     }
   },
 }

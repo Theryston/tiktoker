@@ -1,6 +1,6 @@
 import { build, filesystem, print } from 'gluegun'
 
-async function run(argv) {
+async function run(argv: any) {
   const cli = build()
     .brand('tiktoker')
     .src(__dirname)

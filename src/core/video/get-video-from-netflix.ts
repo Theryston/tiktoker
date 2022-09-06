@@ -41,7 +41,7 @@ export async function getVideoFromNetflix(netflixLink: string): Promise<Video> {
   const videoUrl = body.result.video_tracks[0].streams.find(
     (stream: any) => stream.crop_w === videoMaxCroppedWidth
   ).urls[0].url
-  const subtitlesUrls = body.result.timedtexttracks.find((timed) => {
+  const subtitlesUrls = body.result.timedtexttracks.find((timed: any) => {
     return timed.language === 'pt-BR' && timed.ttDownloadables
   }).ttDownloadables.simplesdh.downloadUrls
   const subtitlesUrl = subtitlesUrls[Object.keys(subtitlesUrls)[0]]

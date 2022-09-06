@@ -3,7 +3,7 @@ import listProfiles from '../../core/profile/list-profiles'
 import * as path from 'path'
 import listVideos from '../../core/video/list-videos'
 import { getVideoFromNetflix } from '../../core/video/get-video-from-netflix'
-import * as loading from 'loading-cli'
+import loading from 'loading-cli'
 import downloadFiles from '../../core/video/download-files'
 import editVideo from '../../core/video/edit-video'
 import createVideo from '../../core/video/create-video'
@@ -35,7 +35,8 @@ const command: GluegunCommand = {
       choices: profiles.map((profile) => `${profile.name} (${profile.path})`),
     })
     const selectedProfile = profiles.find(
-      (profile) => profile.path === selectedProfileText.match(/\((.*)\)/)[1]
+      (profile) =>
+        profile.path === (selectedProfileText.match(/\((.*)\)/) as any)[1]
     )
 
     if (!selectedProfile) {
@@ -57,7 +58,7 @@ const command: GluegunCommand = {
     }
 
     const allEntitiesInProfile = (
-      await filesystem.listAsync(selectedProfile.path)
+      (await filesystem.listAsync(selectedProfile.path)) as string[]
     )
       .map((entityPath) => path.join(selectedProfile.path, entityPath))
       .filter((entityPath) => entityPath.indexOf('.cache') === -1)
@@ -91,7 +92,9 @@ const command: GluegunCommand = {
         )
         return
       }
-      const videoInfo = JSON.parse(await filesystem.readAsync(infoVideoPath))
+      const videoInfo = JSON.parse(
+        (await filesystem.readAsync(infoVideoPath)) as string
+      )
       if (!videoInfo.netflixLink) {
         print.error(
           `The file ${infoVideoPath} does not have a field called "netflixLink" with the url value of your quick laugh`

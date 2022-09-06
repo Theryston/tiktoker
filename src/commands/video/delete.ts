@@ -23,8 +23,13 @@ const command: GluegunCommand = {
       choices: videos.map((video) => `${video.name} (${video.path})`),
     })
     const selectedVideo = videos.find(
-      (video) => video.path === selectedVideoText.match(/\((.*)\)/)[1]
+      (video) => video.path === (selectedVideoText.match(/\((.*)\)/) as any)[1]
     )
+
+    if (!selectedVideo) {
+      print.error('Video not found.')
+      return
+    }
 
     const areYouSure = await prompt.confirm(
       `Are you sure you want to delete this video?`

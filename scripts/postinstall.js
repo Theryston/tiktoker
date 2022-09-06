@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 const { execSync } = require('child_process')
 
 try {

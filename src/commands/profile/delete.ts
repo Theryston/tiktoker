@@ -25,8 +25,14 @@ const command: GluegunCommand = {
       choices: profiles.map((profile) => `${profile.name} (${profile.path})`),
     })
     const selectedProfile = profiles.find(
-      (profile) => profile.path === selectedProfileText.match(/\((.*)\)/)[1]
+      (profile) =>
+        profile.path === (selectedProfileText.match(/\((.*)\)/) as any[1])
     )
+
+    if (!selectedProfile) {
+      print.error('Profile not found.')
+      return
+    }
 
     const areYouSure = await prompt.confirm(
       `Are you sure you want to delete this profile?`

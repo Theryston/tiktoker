@@ -6,6 +6,10 @@ const command: GluegunCommand = {
   run: async (toolbox) => {
     const { runtime } = toolbox
 
+    if (!runtime) {
+      return
+    }
+
     runtime.run('help')
   },
 }
