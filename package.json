@@ -2,7 +2,7 @@
   "name": "tiktoker",
   "version": "2.0.0",
   "description": "Who said only humans can be tiktoker? 😲",
-  "private": true,
+  "private": false,
   "types": "build/types/types.d.ts",
   "bin": {
     "tiktoker": "bin/tiktoker"
