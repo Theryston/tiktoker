@@ -18,7 +18,7 @@
     "watch": "jest --watch",
     "snapupdate": "jest --updateSnapshot",
     "coverage": "jest --coverage",
-    "postinstall": "prisma generate && tiktoker config",
+    "postinstall": "node scripts/postinstall.js",
     "release": "pnpm semantic-release"
   },
   "files": [
@@ -40,6 +40,7 @@
     "get-video-duration": "^4.1.0",
     "gluegun": "latest",
     "loading-cli": "^1.1.0",
+    "prisma": "^4.3.1",
     "puppeteer": "^17.1.1"
   },
   "devDependencies": {
@@ -58,7 +59,6 @@
     "jest": "^26.6.3",
     "prettier": "^2.2.1",
     "pretty-quick": "^3.1.0",
-    "prisma": "^4.3.1",
     "semantic-release": "^19.0.5",
     "ts-jest": "^26.5.3",
     "ts-node": "10.6.0",

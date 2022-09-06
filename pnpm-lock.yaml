@@ -40,6 +40,7 @@ dependencies:
   get-video-duration: 4.1.0
   gluegun: 5.1.2
   loading-cli: 1.1.0
+  prisma: 4.3.1
   puppeteer: 17.1.1
 
 devDependencies:
@@ -58,7 +59,6 @@ devDependencies:
   jest: 26.6.3_ts-node@10.6.0
   prettier: 2.7.1
   pretty-quick: 3.1.3_prettier@2.7.1
-  prisma: 4.3.1
   semantic-release: 19.0.5
   ts-jest: 26.5.6_hiruyezz6whlouk4tx2v6ut2z4
   ts-node: 10.6.0_e4u5yugoceussw45vauf554edq
@@ -1019,6 +1019,7 @@ packages:
   /@prisma/engines/4.3.1:
     resolution: {integrity: sha512-4JF/uMaEDAPdcdZNOrnzE3BvrbGpjgV0FcPT3EVoi6I86fWkloqqxBt+KcK/+fIRR0Pxj66uGR9wVH8U1Y13JA==}
     requiresBuild: true
+    dev: false
 
   /@semantic-release/commit-analyzer/9.0.2_semantic-release@19.0.5:
     resolution: {integrity: sha512-E+dr6L+xIHZkX4zNMe6Rnwg4YQrWNXK+rNsvwOPpdFppvZO1olE2fIgWhv89TkQErygevbjsZFSIxp+u6w2e5g==}
@@ -5849,6 +5850,7 @@ packages:
     requiresBuild: true
     dependencies:
       '@prisma/engines': 4.3.1
+    dev: false
 
   /process-nextick-args/2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}
