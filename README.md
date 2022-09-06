@@ -10,4 +10,6 @@ this cli will download the audio and video of a quick laugh from netflix, it wil
 npm install -g tiktoker
 ```
 
-## Usage
+## Docs
+
+See all commands [here](/docs/commands.md)

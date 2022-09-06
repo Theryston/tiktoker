@@ -1,7 +1,7 @@
 {
   "name": "tiktoker",
   "version": "2.0.0",
-  "description": "tiktoker CLI",
+  "description": "Who said only humans can be tiktoker? 😲",
   "private": true,
   "types": "build/types/types.d.ts",
   "bin": {
@@ -18,7 +18,8 @@
     "watch": "jest --watch",
     "snapupdate": "jest --updateSnapshot",
     "coverage": "jest --coverage",
-    "postinstall": "tiktoker config"
+    "postinstall": "prisma generate && tiktoker config",
+    "release": "pnpm semantic-release"
   },
   "files": [
     "build",
@@ -42,6 +43,9 @@
     "puppeteer": "^17.1.1"
   },
   "devDependencies": {
+    "@semantic-release/github": "^8.0.6",
+    "@semantic-release/npm": "^9.0.1",
+    "@semantic-release/release-notes-generator": "^10.0.3",
     "@types/jest": "^26.0.20",
     "@types/node": "^12.7.11",
     "@typescript-eslint/eslint-plugin": "^4.17.0",
@@ -55,6 +59,7 @@
     "prettier": "^2.2.1",
     "pretty-quick": "^3.1.0",
     "prisma": "^4.3.1",
+    "semantic-release": "^19.0.5",
     "ts-jest": "^26.5.3",
     "ts-node": "10.6.0",
     "typescript": "^4.2.3"
@@ -71,5 +76,22 @@
     "hooks": {
       "pre-commit": "pretty-quick --staged"
     }
+  },
+  "keywords": [
+    "tiktoker",
+    "tiktok",
+    "bot",
+    "tiktok bot",
+    "tiktok creator",
+    "creator"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/Theryston/tiktoker.git",
+  "author": "Theryston Santos <funktodo2@gmail.com>",
+  "homepage": "https://github.com/Theryston/tiktoker",
+  "bugs": {
+    "url": "https://github.com/Theryston/tiktoker/issues"
   }
 }
