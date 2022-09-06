@@ -154,7 +154,9 @@ const command: GluegunCommand = {
       load.stop()
 
       print.info(
-        print.colors.green(`I finished the process with video ${i + 1}`)
+        print.colors.green(
+          `I finished the process with video ${i + 1} (${videoPath})`
+        )
       )
     }
 
