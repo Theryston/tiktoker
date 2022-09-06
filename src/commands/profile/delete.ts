@@ -4,6 +4,7 @@ import listProfiles from '../../core/profile/list-profiles'
 
 const command: GluegunCommand = {
   name: 'delete',
+  description: 'delete a profile',
   run: async (toolbox) => {
     const { prompt, print, filesystem } = toolbox
 

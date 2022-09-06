@@ -8,6 +8,7 @@ const load = loading({
 
 const command: GluegunCommand = {
   name: 'config',
+  description: 'generate inicial config',
   run: async (toolbox) => {
     const { print, prompt, filesystem, system } = toolbox
 

@@ -4,6 +4,7 @@ import listVideos from '../../core/video/list-videos'
 
 const command: GluegunCommand = {
   name: 'delete',
+  description: 'delete a video',
   run: async (toolbox) => {
     const { prompt, print, filesystem } = toolbox
 

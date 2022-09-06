@@ -3,6 +3,7 @@ import listProfiles from '../../core/profile/list-profiles'
 
 const command: GluegunCommand = {
   name: 'list',
+  description: 'list all profiles',
   run: async (toolbox) => {
     const { print } = toolbox
 

@@ -3,6 +3,7 @@ import createProfile from '../../core/profile/create-profile'
 
 const command: GluegunCommand = {
   name: 'create',
+  description: 'create a new profile',
   run: async (toolbox) => {
     const { prompt, print, filesystem } = toolbox
 

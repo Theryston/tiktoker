@@ -3,6 +3,7 @@ import listVideos from '../../core/video/list-videos'
 
 const command: GluegunCommand = {
   name: 'list',
+  description: 'list all videos',
   run: async (toolbox) => {
     const { print } = toolbox
 

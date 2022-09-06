@@ -14,6 +14,7 @@ const load = loading({
 
 const command: GluegunCommand = {
   name: 'create',
+  description: 'create a new video',
   run: async (toolbox) => {
     const { print, prompt, filesystem } = toolbox
 

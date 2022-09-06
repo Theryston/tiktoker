@@ -2,10 +2,11 @@ import { GluegunCommand } from 'gluegun'
 
 const command: GluegunCommand = {
   name: 'tiktoker',
+  description: 'tiktoker help',
   run: async (toolbox) => {
-    const { print } = toolbox
+    const { runtime } = toolbox
 
-    print.info('Welcome to your CLI')
+    runtime.run('help')
   },
 }
 
