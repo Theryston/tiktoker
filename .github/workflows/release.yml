@@ -21,10 +21,10 @@ jobs:
           node-version: '16.x'
       - name: Install dependencies and build
         run: |
-          yarn
-          yarn build
+          pnpm i
+          pnpm run build
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: yarn release
+        run: pnpm run release

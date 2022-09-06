@@ -10,8 +10,6 @@ this cli will download the audio and video of a quick laugh from netflix, it wil
 npm install -g tiktoker
 ```
 
-## Exemplo
+## Docs
 
-To open the cli is very simple, just type in your terminal in the directory where you want the video `tiktoker` see an example below of the usage:
-
-![image](https://ik.imagekit.io/Theryston/image_hdqjB1Rjj.png)
+See all commands [here](/docs/commands.md)
