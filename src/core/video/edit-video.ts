@@ -1,6 +1,8 @@
 import { FFScene, FFVideo, FFCreator } from 'ffcreator'
 import { getVideoDurationInSeconds } from 'get-video-duration'
 import * as ffmpegInstaller from '@ffmpeg-installer/ffmpeg'
+import fs from 'fs'
+import { netflixSubtitle } from '../../utils/netflix-subtitle'
 
 FFCreator.setFFmpegPath(ffmpegInstaller.path)
 
@@ -8,13 +10,19 @@ export default async function editVideo({
   videoFilePath,
   audioFilePath,
   outputFilePath,
+  subtitlesPath,
 }: {
   videoFilePath: string
   audioFilePath: string
   outputFilePath: string
+  subtitlesPath: string
 }): Promise<FFCreatorSpace.FFCreatorCompleteEvent> {
   const loadPromise = new Promise<FFCreatorSpace.FFCreatorCompleteEvent>(
     async (resolve, reject) => {
+      const subtitlesXml = fs.readFileSync(subtitlesPath, 'utf8')
+      const subtitles = await netflixSubtitle(subtitlesXml)
+      console.log(subtitles)
+
       const rawVideoDuration = await getVideoDurationInSeconds(videoFilePath)
 
       const creator = new FFCreator({

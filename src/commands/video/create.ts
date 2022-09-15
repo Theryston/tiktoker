@@ -122,8 +122,8 @@ const command: GluegunCommand = {
 
       const outputPath = {
         video: path.join(videoPath, 'raw', 'video.mp4'),
-        audio: path.join(videoPath, 'raw', 'audio.mp4'),
-        subtitles: path.join(videoPath, 'raw', 'subtitles.txt'),
+        audio: path.join(videoPath, 'raw', 'audio.mp3'),
+        subtitles: path.join(videoPath, 'raw', 'subtitles.xml'),
         result: path.join(
           videoPath,
           `${videoFromNetflix.title.replace(/[^a-zA-Z 0-9]/gi, '')}${
@@ -148,6 +148,7 @@ const command: GluegunCommand = {
         videoFilePath: outputPath.video,
         audioFilePath: outputPath.audio,
         outputFilePath: outputPath.result,
+        subtitlesPath: outputPath.subtitles,
       })
       load.stop()
 
