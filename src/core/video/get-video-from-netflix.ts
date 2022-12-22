@@ -19,23 +19,10 @@ export async function getVideoFromNetflix(
 
   await page.goto(netflixLink)
 
-  let response: puppeteer.HTTPResponse
-
-  try {
-    response = await page.waitForResponse(
-      (response) =>
-        response.url().indexOf('https://www.netflix.com/playapi') !== -1,
-      {
-        timeout: 1000,
-      }
-    )
-  } catch (e) {
-    // try again
-    response = await page.waitForResponse(
-      (response) =>
-        response.url().indexOf('https://www.netflix.com/playapi') !== -1
-    )
-  }
+  const response = await page.waitForResponse(
+    (response: any) =>
+      response.url().indexOf('https://www.netflix.com/playapi') !== -1
+  )
 
   const body = await response.json()
   const audioUrl = body.result.audio_tracks[0].streams[0].urls[0].url
@@ -45,8 +32,8 @@ export async function getVideoFromNetflix(
   ).urls[0].url
   const subtitlesUrls = body.result.timedtexttracks.find((timed: any) => {
     return timed.language === 'pt-BR' && timed.ttDownloadables
-  }).ttDownloadables.simplesdh.downloadUrls
-  const subtitlesUrl = subtitlesUrls[Object.keys(subtitlesUrls)[0]]
+  }).ttDownloadables.simplesdh.urls
+  const subtitlesUrl = subtitlesUrls[0].url
   const title = await page.evaluate(() => {
     const title: any = document.querySelector('.modal-header-title')
     return title.innerText
